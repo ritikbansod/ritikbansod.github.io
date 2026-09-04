@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Ritik Bansod | Java Backend Developer">
+  <meta property="og:description" content="Spring Boot microservices, Kubernetes, Kafka, CI/CD, and AI-native engineering with AWS Kiro, Claude, and MCP.">
+  <meta property="og:image" content="https://avatars.githubusercontent.com/u/97613929?v=4">
+  <meta property="og:url" content="https://ritikbansod.github.io/">
+  <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -90,10 +95,36 @@
 
     <section id="skills">
       <h2 class="section-title"><span>02.</span> Tech Stack</h2>
+<div class="icon-grid">
+  <span class="tech-icon" title="Java"><img src="https://skillicons.dev/icons?i=java&theme=dark" alt="Java"></span>
+  <span class="tech-icon" title="Spring Boot"><img src="https://skillicons.dev/icons?i=spring&theme=dark" alt="Spring Boot"></span>
+  <span class="tech-icon" title="Hibernate"><img src="https://skillicons.dev/icons?i=hibernate&theme=dark" alt="Hibernate"></span>
+  <span class="tech-icon" title="Python"><img src="https://skillicons.dev/icons?i=python&theme=dark" alt="Python"></span>
+  <span class="tech-icon" title="Bash"><img src="https://skillicons.dev/icons?i=bash&theme=dark" alt="Bash"></span>
+  <span class="tech-icon" title="Docker"><img src="https://skillicons.dev/icons?i=docker&theme=dark" alt="Docker"></span>
+  <span class="tech-icon" title="Kubernetes"><img src="https://skillicons.dev/icons?i=kubernetes&theme=dark" alt="Kubernetes"></span>
+  <span class="tech-icon" title="Apache Kafka"><img src="https://skillicons.dev/icons?i=kafka&theme=dark" alt="Apache Kafka"></span>
+  <span class="tech-icon" title="MySQL"><img src="https://skillicons.dev/icons?i=mysql&theme=dark" alt="MySQL"></span>
+  <span class="tech-icon" title="PostgreSQL"><img src="https://skillicons.dev/icons?i=postgres&theme=dark" alt="PostgreSQL"></span>
+  <span class="tech-icon" title="Jenkins"><img src="https://skillicons.dev/icons?i=jenkins&theme=dark" alt="Jenkins"></span>
+  <span class="tech-icon" title="Prometheus"><img src="https://skillicons.dev/icons?i=prometheus&theme=dark" alt="Prometheus"></span>
+  <span class="tech-icon" title="Grafana"><img src="https://skillicons.dev/icons?i=grafana&theme=dark" alt="Grafana"></span>
+  <span class="tech-icon" title="Git"><img src="https://skillicons.dev/icons?i=git&theme=dark" alt="Git"></span>
+  <span class="tech-icon" title="GitHub"><img src="https://skillicons.dev/icons?i=github&theme=dark" alt="GitHub"></span>
+  <span class="tech-icon" title="Linux"><img src="https://skillicons.dev/icons?i=linux&theme=dark" alt="Linux"></span>
+  <span class="tech-icon" title="Maven"><img src="https://skillicons.dev/icons?i=maven&theme=dark" alt="Maven"></span>
+  <span class="tech-icon" title="Eclipse IDE"><img src="https://skillicons.dev/icons?i=eclipse&theme=dark" alt="Eclipse IDE"></span>
+  <span class="tech-icon" title="Postman"><img src="https://skillicons.dev/icons?i=postman&theme=dark" alt="Postman"></span>
+  <span class="tech-icon" title="HTML"><img src="https://skillicons.dev/icons?i=html&theme=dark" alt="HTML"></span>
+  <span class="tech-icon" title="CSS"><img src="https://skillicons.dev/icons?i=css&theme=dark" alt="CSS"></span>
+  <span class="tech-icon" title="JavaScript"><img src="https://skillicons.dev/icons?i=js&theme=dark" alt="JavaScript"></span>
+  <span class="tech-icon" title="Angular"><img src="https://skillicons.dev/icons?i=angular&theme=dark" alt="Angular"></span>
+  <span class="tech-icon" title="AWS"><img src="https://skillicons.dev/icons?i=aws&theme=dark" alt="AWS"></span>
+</div>
       <div class="skills-grid">
         <div class="skill-card">
           <h3><i class="fa-solid fa-code"></i> Languages</h3>
-          <ul><li>Core Java</li><li>Python</li><li>Shell Scripting</li><li>SQL</li></ul>
+          <ul><li>Core Java</li><li>Python</li><li>SQL</li><li>Shell Scripting</li><li>HTML · CSS · JavaScript</li><li>Angular (basic)</li></ul>
         </div>
         <div class="skill-card">
           <h3><i class="fa-solid fa-layer-group"></i> Frameworks</h3>
@@ -223,5 +254,15 @@
     <p>Designed &amp; built by <a href="https://github.com/ritikbansod">ritikbansod</a> · Pune, India</p>
   </footer>
 
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) entry.target.classList.add("visible");
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll("section > .section-title, .skill-card, .project, .timeline-card").forEach(
+    (el) => { el.classList.add("reveal"); observer.observe(el); }
+  );
+</script>
 </body>
 </html>

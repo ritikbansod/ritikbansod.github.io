@@ -320,3 +320,25 @@ footer a:hover { text-decoration: underline; }
   .about-grid { grid-template-columns: 1fr; }
   .avatar-frame { max-width: 220px; }
 }
+
+/* ---------- scroll reveal + icon grid ---------- */
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+.tech-icon img {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+.tech-icon:hover img { transform: translateY(-4px) scale(1.08); }
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
