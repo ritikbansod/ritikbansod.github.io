@@ -5,17 +5,17 @@
    ============================================================ */
 
 :root {
-  --bg: #0C0A12;
-  --bg-soft: #131017;
-  --panel: #181420;
-  --border: #2A2333;
-  --blood: #4C3A78;
-  --terracotta: #A78BFA;
-  --coral: #C3B5F5;
-  --amber: #C9BFF5;
-  --bone: #E4E1EC;
-  --bone-dim: #948FA3;
-  --text: #ECEAF2;
+  --bg: #0B0A09;
+  --bg-soft: #141110;
+  --panel: #1A1512;
+  --border: #2B211C;
+  --blood: #7C2D26;
+  --terracotta: #C97B63;
+  --coral: #E2725B;
+  --amber: #E8A87C;
+  --bone: #E9DCCB;
+  --bone-dim: #A08776;
+  --text: #EFE6D8;
   --mono: "JetBrains Mono", ui-monospace, monospace;
   --sans: "Inter", -apple-system, "Segoe UI", sans-serif;
 }
@@ -59,7 +59,7 @@ body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 1;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.07) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(232, 168, 124, 0.07) 0%, transparent 65%);
   transform: translate(-50%, -50%);
   transition: opacity 0.3s;
 }
@@ -104,7 +104,7 @@ nav {
   align-items: center;
   gap: 26px;
   padding: 14px 4vw;
-  background: rgba(12, 10, 18, 0.75);
+  background: rgba(11, 10, 9, 0.75);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   z-index: 50;
@@ -132,7 +132,7 @@ nav ul a:hover { color: var(--amber); }
   font-weight: 600;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.hire-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(167, 139, 250, 0.35); }
+.hire-pill:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(232, 168, 124, 0.35); }
 .nav-burger { display: none; color: var(--amber); font-size: 1.25rem; cursor: pointer; margin-left: auto; }
 #nav-toggle { display: none; }
 
@@ -158,15 +158,15 @@ header#home {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 60% 45% at 50% 38%, rgba(167, 139, 250, 0.12), transparent 70%),
-    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(12, 10, 18, 0.9), transparent 75%);
+    radial-gradient(ellipse 60% 45% at 50% 38%, rgba(232, 168, 124, 0.12), transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(11, 10, 9, 0.9), transparent 75%);
 }
 .hero-glow-ring {
   position: absolute;
   width: 190px;
   height: 190px;
   border-radius: 34px;
-  background: radial-gradient(circle, rgba(167, 139, 250, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(232, 168, 124, 0.35), transparent 70%);
   filter: blur(22px);
   pointer-events: none;
 }
@@ -213,7 +213,7 @@ header#home {
   height: 148px;
   border-radius: 28px;
   border: 1px solid var(--border);
-  box-shadow: 0 0 70px rgba(167, 139, 250, 0.25), 0 20px 50px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 70px rgba(232, 168, 124, 0.25), 0 20px 50px rgba(0, 0, 0, 0.6);
   will-change: transform;
   position: relative;
   z-index: 2;
@@ -251,13 +251,13 @@ header#home {
   text-decoration: none;
   transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
 }
-.btn:hover { transform: translateY(-2px); background: rgba(167, 139, 250, 0.12); }
+.btn:hover { transform: translateY(-2px); background: rgba(201, 123, 99, 0.12); }
 .btn.solid {
   background: linear-gradient(120deg, var(--blood), var(--terracotta));
   border-color: transparent;
   color: #fff;
 }
-.btn.solid:hover { box-shadow: 0 8px 30px rgba(167, 139, 250, 0.35); }
+.btn.solid:hover { box-shadow: 0 8px 30px rgba(201, 123, 99, 0.35); }
 .scroll-hint {
   position: absolute;
   bottom: 26px;
@@ -356,7 +356,7 @@ section { padding: 90px 0 40px; }
   max-width: 130px;
   border-radius: 22px;
   transform: rotate(3deg);
-  box-shadow: 0 0 50px rgba(167, 139, 250, 0.18);
+  box-shadow: 0 0 50px rgba(232, 168, 124, 0.18);
 }
 
 /* ---------- expertise ---------- */
@@ -378,7 +378,7 @@ section { padding: 90px 0 40px; }
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(167, 139, 250, 0.08), transparent 45%);
+  background: radial-gradient(400px circle at var(--mx, 50%) var(--my, 50%), rgba(232, 168, 124, 0.08), transparent 45%);
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -433,7 +433,7 @@ ul.tech li {
   font-family: var(--mono);
   font-size: 0.72rem;
   color: var(--amber);
-  background: rgba(167, 139, 250, 0.08);
+  background: rgba(232, 168, 124, 0.08);
   border-radius: 999px;
   padding: 4px 12px;
 }
