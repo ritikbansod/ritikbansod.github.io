@@ -24,27 +24,43 @@
   }
   if (boot) boot.addEventListener("click", dismissBoot);
 
-  /* ---- hero cycling headline: filled and outlined alternate ---- */
+  /* ---- hero: scroll scrubs the photo through a 360 rotation ---- */
   const words = [
     ["BACKEND", "ENGINEER", "fill"],
     ["CLOUD", "NATIVE DEV", "outline"],
     ["AI-FIRST", "BUILDER", "fill"],
     ["EVENT", "DRIVEN DEV", "outline"],
   ];
+  const heroSection = document.getElementById("home");
+  const avatar = document.getElementById("hero-avatar");
+  const hint = document.getElementById("scroll-hint");
   const wordEl = document.getElementById("hero-word");
-  let index = 0;
-  if (wordEl) {
-    setInterval(() => {
-      wordEl.classList.add("swap-out");
-      setTimeout(() => {
-        index = (index + 1) % words.length;
-        const [a, b, mode] = words[index];
-        wordEl.innerHTML = a + "<br>" + b;
-        wordEl.classList.remove("fill", "outline", "swap-out");
-        wordEl.classList.add(mode);
-      }, 260);
-    }, 2800);
+  let lastIndex = -1;
+
+  function scrub() {
+    if (!heroSection) return;
+    const total = heroSection.offsetHeight - window.innerHeight;
+    const p = Math.min(1, Math.max(0, -heroSection.getBoundingClientRect().top / Math.max(1, total)));
+
+    if (avatar) {
+      const scale = 0.92 + 0.2 * Math.sin(p * Math.PI);
+      avatar.style.transform = "rotate(" + (p * 360).toFixed(1) + "deg) scale(" + scale.toFixed(3) + ")";
+    }
+
+    const idx = Math.min(words.length - 1, Math.floor(p * words.length));
+    if (idx !== lastIndex && wordEl) {
+      const parts = words[idx];
+      wordEl.classList.remove("fill", "outline");
+      wordEl.classList.add(parts[2]);
+      wordEl.innerHTML = parts[0] + "<br>" + parts[1];
+      lastIndex = idx;
+    }
+
+    if (hint) hint.style.opacity = String(Math.max(0, 1 - p * 4));
   }
+  window.addEventListener("scroll", scrub, { passive: true });
+  window.addEventListener("resize", scrub);
+  scrub();
 
   /* ---- cursor spotlight follows the mouse ---- */
   const glow = document.getElementById("cursor-glow");

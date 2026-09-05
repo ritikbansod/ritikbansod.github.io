@@ -136,16 +136,39 @@ nav ul a:hover { color: var(--amber); }
 .nav-burger { display: none; color: var(--amber); font-size: 1.25rem; cursor: pointer; margin-left: auto; }
 #nav-toggle { display: none; }
 
-/* ---------- hero ---------- */
+/* ---------- hero: scroll-scrubbed 360 photo scene ---------- */
 header#home {
-  min-height: 100svh;
+  height: 320vh;
+  position: relative;
+}
+.hero-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 120px 5vw 40px;
-  position: relative;
+  padding: 110px 5vw 40px;
+  overflow: hidden;
+}
+.hero-fog {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 38%, rgba(232, 168, 124, 0.12), transparent 70%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(11, 10, 9, 0.9), transparent 75%);
+}
+.hero-glow-ring {
+  position: absolute;
+  width: 190px;
+  height: 190px;
+  border-radius: 34px;
+  background: radial-gradient(circle, rgba(232, 168, 124, 0.35), transparent 70%);
+  filter: blur(22px);
+  pointer-events: none;
 }
 .eyebrow {
   font-family: var(--mono);
@@ -190,8 +213,10 @@ header#home {
   height: 148px;
   border-radius: 28px;
   border: 1px solid var(--border);
-  box-shadow: 0 0 70px rgba(232, 168, 124, 0.22), 0 20px 50px rgba(0, 0, 0, 0.6);
-  transform: rotate(-3deg);
+  box-shadow: 0 0 70px rgba(232, 168, 124, 0.25), 0 20px 50px rgba(0, 0, 0, 0.6);
+  will-change: transform;
+  position: relative;
+  z-index: 2;
 }
 .status {
   font-family: var(--mono);
