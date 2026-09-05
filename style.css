@@ -180,8 +180,8 @@ header#home {
 }
 .hero-glow-ring {
   position: absolute;
-  width: clamp(300px, 40vw, 470px);
-  height: clamp(300px, 40vw, 470px);
+  width: clamp(260px, 30vw, 380px);
+  height: clamp(260px, 30vw, 380px);
   border-radius: 50%;
   background: radial-gradient(circle, var(--accent-soft), transparent 68%);
   filter: blur(26px);
@@ -246,7 +246,7 @@ header#home {
 }
 .hero-avatar-wrap { text-align: center; position: relative; perspective: 1100px; }
 .hero-avatar {
-  width: clamp(230px, 30vw, 360px);
+  width: clamp(200px, 22vw, 280px);
   aspect-ratio: 1 / 1;
   border-radius: 40px;
   border: 1px solid var(--border);
@@ -726,12 +726,12 @@ nav { perspective: 800px; }
   }
   .hero-row { margin: 14px 0 22px; gap: 28px; }
   .hero-avatar {
-    width: clamp(190px, 34vh, 300px);
-    border-radius: 32px;
+    width: clamp(170px, 28vh, 240px);
+    border-radius: 28px;
   }
   .hero-glow-ring {
-    width: clamp(240px, 42vh, 400px);
-    height: clamp(240px, 42vh, 400px);
+    width: clamp(210px, 34vh, 320px);
+    height: clamp(210px, 34vh, 320px);
   }
   .hero-actions { margin-bottom: 10px; }
   .scroll-hint { bottom: 16px; }
