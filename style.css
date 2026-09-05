@@ -180,8 +180,8 @@ header#home {
 }
 .hero-glow-ring {
   position: absolute;
-  width: clamp(260px, 30vw, 380px);
-  height: clamp(260px, 30vw, 380px);
+  width: clamp(250px, min(30vw, 42vh), 380px);
+  height: clamp(250px, min(30vw, 42vh), 380px);
   border-radius: 50%;
   background: radial-gradient(circle, var(--accent-soft), transparent 68%);
   filter: blur(26px);
@@ -209,7 +209,7 @@ header#home {
   z-index: 3;
 }
 #hero-word {
-  font-size: clamp(2.8rem, 10vw, 7.6rem);
+  font-size: clamp(2.8rem, min(10vw, 13vh), 7.6rem);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.02em;
@@ -246,7 +246,7 @@ header#home {
 }
 .hero-avatar-wrap { text-align: center; position: relative; perspective: 1100px; }
 .hero-avatar {
-  width: clamp(200px, 22vw, 280px);
+  width: clamp(190px, min(22vw, 32vh), 280px);
   aspect-ratio: 1 / 1;
   border-radius: 40px;
   border: 1px solid var(--border);
@@ -405,12 +405,14 @@ section { padding: 90px 0 40px; }
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 15px;
+  gap: 16px;
   perspective: 1200px;
+  max-width: 880px;
+  margin: 0 auto;
 }
 .cube {
-  width: 92px;
-  padding: 13px 8px 10px;
+  width: 98px;
+  padding: 14px 8px 11px;
   border-radius: 14px;
   background: linear-gradient(160deg, var(--panel), var(--bg-soft));
   border: 1px solid var(--border);
@@ -591,6 +593,9 @@ footer {
   letter-spacing: 0.04em;
   line-height: 0.9;
   text-align: center;
+  background: linear-gradient(115deg, var(--accent) 0%, var(--accent-soft) 55%, transparent 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
   -webkit-text-stroke: 1px var(--border);
   user-select: none;
@@ -719,20 +724,8 @@ nav { perspective: 800px; }
 /* ---------- laptop / short screens: compact desktop hero ---------- */
 @media (min-width: 761px) and (max-height: 900px) {
   .hero-pin { padding-top: 84px; }
-  .eyebrow { margin-bottom: 14px; }
-  #hero-word {
-    font-size: clamp(2.2rem, 9vh, 5.2rem);
-    min-height: 1.95em;
-  }
-  .hero-row { margin: 14px 0 22px; gap: 28px; }
-  .hero-avatar {
-    width: clamp(170px, 28vh, 240px);
-    border-radius: 28px;
-  }
-  .hero-glow-ring {
-    width: clamp(210px, 34vh, 320px);
-    height: clamp(210px, 34vh, 320px);
-  }
-  .hero-actions { margin-bottom: 10px; }
-  .scroll-hint { bottom: 16px; }
+  .eyebrow { margin-bottom: 12px; }
+  .hero-row { margin: 12px 0 20px; gap: 28px; }
+  .hero-actions { margin-bottom: 8px; }
+  .scroll-hint { bottom: 14px; }
 }
