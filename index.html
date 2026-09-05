@@ -4,265 +4,213 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ritik Bansod | Java Backend Developer</title>
-  <meta name="description" content="Ritik Bansod, Java Backend Developer at Wipro. Spring Boot, Kubernetes, Kafka, CI/CD, and AI-augmented engineering.">
+  <meta name="description" content="Ritik Bansod, Java Backend Developer at Wipro. Spring Boot microservices, Kubernetes, Kafka, CI/CD, and AI-native engineering with AWS Kiro, Claude, and MCP.">
   <link rel="icon" type="image/png" href="assets/avatar_rb.png">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <meta property="og:title" content="Ritik Bansod | Java Backend Developer">
   <meta property="og:description" content="Spring Boot microservices, Kubernetes, Kafka, CI/CD, and AI-native engineering with AWS Kiro, Claude, and MCP.">
   <meta property="og:image" content="https://ritikbansod.github.io/assets/avatar_rb.png">
   <meta property="og:url" content="https://ritikbansod.github.io/">
   <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- boot overlay -->
+  <div id="boot" aria-hidden="true">
+    <div class="boot-inner">
+      <p class="boot-line">// INITIALIZING SYSTEM</p>
+      <p class="boot-line">// LOADING MODULES <span id="boot-pct">0%</span></p>
+      <div class="boot-bar"><div id="boot-fill"></div></div>
+      <p class="boot-line dim">// SECURE CONNECTION ESTABLISHED</p>
+      <p class="boot-skip">click to skip</p>
+    </div>
+  </div>
+
+  <div id="cursor-glow" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
   <nav>
-    <a class="logo" href="#home">&lt; RB /&gt;</a>
+    <a class="logo" href="#home">ritik<span class="dot">.dev</span></a>
     <input type="checkbox" id="nav-toggle" aria-label="Toggle menu">
-    <label for="nav-toggle" class="nav-burger"><i class="fa-solid fa-bars"></i></label>
+    <label for="nav-toggle" class="nav-burger" aria-hidden="true">&#9776;</label>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
+      <li><a href="#expertise">Expertise</a></li>
       <li><a href="#projects">Projects</a></li>
-      <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <a class="hire-pill" href="#contact">Hire Me</a>
   </nav>
 
+  <!-- hero -->
   <header id="home">
-    <p class="intro">Hi there, my name is</p>
-    <h1>Ritik Bansod</h1>
-    <h2>I build <span class="accent">scalable backends</span> &amp; ship them with DevOps.</h2>
-    <p class="lead">
-      Java Backend Developer at <strong>Wipro</strong>: Spring Boot microservices on Kubernetes,
-      event-driven systems with Kafka, and CI/CD pipelines. Currently exploring
-      <strong>AI-augmented engineering</strong> with AWS Kiro and Claude agent workflows and MCP servers.
-    </p>
+    <p class="eyebrow">HI, I'M <span class="under">RITIK BANSOD</span></p>
+    <h1 id="hero-word" class="fill">BACKEND ENGINEER</h1>
+    <div class="hero-row">
+      <div class="hero-side left">
+        <p class="mono-label">// WIPRO LIMITED · PUNE</p>
+        <p class="side-text">3+ years shipping Spring Boot microservices.</p>
+      </div>
+      <div class="hero-avatar-wrap">
+        <img src="assets/avatar_rb.png" alt="Ritik Bansod" class="hero-avatar">
+        <p class="status"><span class="dot-live"></span> OPEN TO OPPORTUNITIES</p>
+      </div>
+      <div class="hero-side right">
+        <p class="mono-label">// AI-NATIVE WORKFLOW</p>
+        <p class="side-text">AWS Kiro · Claude · MCP wired into daily engineering.</p>
+      </div>
+    </div>
     <div class="hero-actions">
       <a class="btn solid" href="#projects">View My Work</a>
       <a class="btn" href="assets/Ritik-Bansod-Resume.pdf" download>Download Resume</a>
-      <a class="btn" href="#contact">Get In Touch</a>
-    </div>
-    <div class="hero-socials">
-      <a href="https://github.com/ritikbansod" aria-label="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-      <a href="https://linkedin.com/in/ritik-bansod-3267011b5" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="mailto:ritikbansod.work@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <a class="btn" href="#contact">Contact Me</a>
     </div>
   </header>
 
+  <!-- marquee ticker -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>SPRING BOOT</span><i>◆</i><span>KUBERNETES</span><i>◆</i><span>APACHE KAFKA</span><i>◆</i><span>HELM</span><i>◆</i><span>JENKINS CI/CD</span><i>◆</i><span>PROMETHEUS</span><i>◆</i><span>GRAFANA</span><i>◆</i><span>Docker</span><i>◆</i><span>AWS KIRO</span><i>◆</i><span>CLAUDE</span><i>◆</i><span>MCP</span><i>◆</i><span>POSTGRESQL</span><i>◆</i><span>LINUX</span><i>◆</i>
+      <span>SPRING BOOT</span><i>◆</i><span>KUBERNETES</span><i>◆</i><span>APACHE KAFKA</span><i>◆</i><span>HELM</span><i>◆</i><span>JENKINS CI/CD</span><i>◆</i><span>PROMETHEUS</span><i>◆</i><span>GRAFANA</span><i>◆</i><span>Docker</span><i>◆</i><span>AWS KIRO</span><i>◆</i><span>CLAUDE</span><i>◆</i><span>MCP</span><i>◆</i><span>POSTGRESQL</span><i>◆</i><span>LINUX</span><i>◆</i>
+    </div>
+  </div>
+
   <main>
+    <!-- about: bento grid -->
     <section id="about">
-      <h2 class="section-title"><span>01.</span> About Me</h2>
-      <div class="about-grid">
-        <div>
-          <p>
-            I'm a Java Backend Developer with <strong>3+ years</strong> of experience at
-            <strong>Wipro Limited, Pune</strong>, designing enterprise-grade web applications and
-            cloud-native microservices with Core Java, Spring Boot, and RESTful web services.
-          </p>
-          <p>
-            My day-to-day lives where backend meets infrastructure: containerizing services with
-            <strong>Docker</strong>, deploying on <strong>Kubernetes with Helm</strong> inside
-            <strong>Service Mesh</strong> environments, wiring <strong>Kafka + Strimzi</strong> for
-            event-driven communication, and keeping systems observable with
-            <strong>Prometheus &amp; Grafana</strong>.
-          </p>
-          <p>
-            I treat <strong>AI tooling like production infrastructure</strong>: AWS Kiro and Claude agent
-            workflows for scaffolding and tests, and the <strong>MCP (Model Context Protocol)</strong>
-            ecosystem with Spring AI for bringing LLM context into the JVM.
-          </p>
-          <ul class="highlight-list">
-            <li>⚡ Improved backend processing efficiency by <strong>25%</strong></li>
-            <li>🚀 Boosted deployment efficiency by <strong>30%</strong> through Jenkins CI/CD automation</li>
-            <li>🎓 AWS Certified Cloud Practitioner</li>
-          </ul>
+      <p class="mono-label center">// SYSTEM PROFILE</p>
+      <h2 class="big-title">Engineering Profile</h2>
+      <div class="bento">
+        <div class="bento-card bio reveal">
+          <p class="mono-label">// PROFILE</p>
+          <h3>Hello, I'm Ritik</h3>
+          <p>Java Backend Developer with <b>3+ years at Wipro</b>, designing enterprise-grade microservices and cloud-native systems with Core Java, Spring Boot, and REST.</p>
+          <p>Works AI-first: AWS Kiro and Claude agent workflows wired into daily engineering through MCP, Spring AI, and LangChain4j.</p>
         </div>
-        <div class="avatar-frame">
-          <img src="assets/avatar_rb.png" alt="Ritik Bansod avatar">
+        <div class="bento-card metric reveal">
+          <p class="mono-label">// EFFICIENCY</p>
+          <p class="metric-num">25%</p>
+          <p>backend processing improvement through workflow optimization</p>
         </div>
-      </div>
-      <div class="certs">
-        <span class="cert"><i class="fa-solid fa-certificate"></i> AWS Certified Cloud Practitioner</span>
-        <span class="cert"><i class="fa-solid fa-certificate"></i> Kubernetes Application Developer Training, KodeKloud</span>
-        <span class="cert"><i class="fa-solid fa-certificate"></i> Spring Boot Level 1 &amp; 2, Wipro</span>
-        <span class="cert"><i class="fa-solid fa-certificate"></i> Java Full Stack Development, Great Learning</span>
-      </div>
-    </section>
-
-    <section id="skills">
-      <h2 class="section-title"><span>02.</span> Tech Stack</h2>
-<div class="icon-grid">
-  <span class="tech-icon" title="Java"><img src="https://skillicons.dev/icons?i=java&theme=dark" alt="Java"></span>
-  <span class="tech-icon" title="Spring Boot"><img src="https://skillicons.dev/icons?i=spring&theme=dark" alt="Spring Boot"></span>
-  <span class="tech-icon" title="Hibernate"><img src="https://skillicons.dev/icons?i=hibernate&theme=dark" alt="Hibernate"></span>
-  <span class="tech-icon" title="Python"><img src="https://skillicons.dev/icons?i=python&theme=dark" alt="Python"></span>
-  <span class="tech-icon" title="Bash"><img src="https://skillicons.dev/icons?i=bash&theme=dark" alt="Bash"></span>
-  <span class="tech-icon" title="Docker"><img src="https://skillicons.dev/icons?i=docker&theme=dark" alt="Docker"></span>
-  <span class="tech-icon" title="Kubernetes"><img src="https://skillicons.dev/icons?i=kubernetes&theme=dark" alt="Kubernetes"></span>
-  <span class="tech-icon" title="Apache Kafka"><img src="https://skillicons.dev/icons?i=kafka&theme=dark" alt="Apache Kafka"></span>
-  <span class="tech-icon" title="MySQL"><img src="https://skillicons.dev/icons?i=mysql&theme=dark" alt="MySQL"></span>
-  <span class="tech-icon" title="PostgreSQL"><img src="https://skillicons.dev/icons?i=postgres&theme=dark" alt="PostgreSQL"></span>
-  <span class="tech-icon" title="Jenkins"><img src="https://skillicons.dev/icons?i=jenkins&theme=dark" alt="Jenkins"></span>
-  <span class="tech-icon" title="Prometheus"><img src="https://skillicons.dev/icons?i=prometheus&theme=dark" alt="Prometheus"></span>
-  <span class="tech-icon" title="Grafana"><img src="https://skillicons.dev/icons?i=grafana&theme=dark" alt="Grafana"></span>
-  <span class="tech-icon" title="Git"><img src="https://skillicons.dev/icons?i=git&theme=dark" alt="Git"></span>
-  <span class="tech-icon" title="GitHub"><img src="https://skillicons.dev/icons?i=github&theme=dark" alt="GitHub"></span>
-  <span class="tech-icon" title="Linux"><img src="https://skillicons.dev/icons?i=linux&theme=dark" alt="Linux"></span>
-  <span class="tech-icon" title="Maven"><img src="https://skillicons.dev/icons?i=maven&theme=dark" alt="Maven"></span>
-  <span class="tech-icon" title="Eclipse IDE"><img src="https://skillicons.dev/icons?i=eclipse&theme=dark" alt="Eclipse IDE"></span>
-  <span class="tech-icon" title="Postman"><img src="https://skillicons.dev/icons?i=postman&theme=dark" alt="Postman"></span>
-  <span class="tech-icon" title="HTML"><img src="https://skillicons.dev/icons?i=html&theme=dark" alt="HTML"></span>
-  <span class="tech-icon" title="CSS"><img src="https://skillicons.dev/icons?i=css&theme=dark" alt="CSS"></span>
-  <span class="tech-icon" title="JavaScript"><img src="https://skillicons.dev/icons?i=js&theme=dark" alt="JavaScript"></span>
-  <span class="tech-icon" title="Angular"><img src="https://skillicons.dev/icons?i=angular&theme=dark" alt="Angular"></span>
-  <span class="tech-icon" title="AWS"><img src="https://skillicons.dev/icons?i=aws&theme=dark" alt="AWS"></span>
-</div>
-      <div class="skills-grid">
-        <div class="skill-card">
-          <h3><i class="fa-solid fa-code"></i> Languages</h3>
-          <ul><li>Core Java</li><li>Python</li><li>SQL</li><li>Shell Scripting</li><li>HTML · CSS · JavaScript</li><li>Angular (basic)</li></ul>
+        <div class="bento-card metric reveal">
+          <p class="mono-label">// DEPLOYMENT</p>
+          <p class="metric-num">30%</p>
+          <p>efficiency gain from automated Jenkins CI/CD pipelines</p>
         </div>
-        <div class="skill-card">
-          <h3><i class="fa-solid fa-layer-group"></i> Frameworks</h3>
-          <ul><li>Spring Boot &amp; Spring Framework</li><li>Spring Security</li><li>Hibernate (JPA)</li><li>Spring AOP</li><li>RESTful Web Services</li></ul>
+        <div class="bento-card avatar-tile reveal">
+          <img src="assets/avatar_rb.png" alt="Ritik Bansod">
         </div>
-        <div class="skill-card">
-          <h3><i class="fa-solid fa-database"></i> Data &amp; Messaging</h3>
-          <ul><li>MySQL</li><li>PostgreSQL</li><li>Apache Kafka</li><li>Strimzi &amp; Schema Registry</li></ul>
+        <div class="bento-card edu reveal">
+          <p class="mono-label">// EDUCATION</p>
+          <p><b>B.E. Electrical Engineering</b></p>
+          <p class="dim">St. Vincent Pallotti COET, Nagpur · 2018 to 2022</p>
         </div>
-        <div class="skill-card">
-          <h3><i class="fa-solid fa-gears"></i> DevOps &amp; Tools</h3>
-          <ul><li>Docker · Kubernetes · Helm</li><li>Jenkins CI/CD</li><li>Prometheus · Grafana</li><li>Linux/Unix · Git · Gerrit</li><li>Maven · SonarQube · Swagger</li></ul>
-        </div>
-        <div class="skill-card wide">
-          <h3><i class="fa-solid fa-brain"></i> Concepts &amp; Patterns</h3>
-          <ul class="pills">
-            <li>Microservices Architecture</li><li>Distributed Systems</li><li>Event-Driven Architecture</li>
-            <li>Service Mesh</li><li>OOAD</li><li>SOLID Principles</li><li>Design Patterns</li>
-            <li>Multithreading &amp; Concurrency</li><li>Data Structures &amp; Algorithms</li><li>Root Cause Analysis</li>
-          </ul>
-        </div>
-        <div class="skill-card wide">
-          <h3><i class="fa-solid fa-robot"></i> AI-Native Toolkit</h3>
-          <ul class="pills">
-            <li>AWS Kiro</li><li>Claude</li><li>MCP (Model Context Protocol)</li><li>Spring AI</li>
-            <li>LangChain4j</li><li>AI-assisted code review</li><li>LLM log-triage in CI</li>
-          </ul>
+        <div class="bento-card certs reveal">
+          <p class="mono-label">// CERTIFICATIONS</p>
+          <p>AWS Certified Cloud Practitioner</p>
+          <p>Kubernetes App Developer (KodeKloud)</p>
+          <p>Spring Boot L1 &amp; L2 (Wipro)</p>
         </div>
       </div>
     </section>
 
+    <!-- expertise -->
+    <section id="expertise">
+      <p class="mono-label center">// EXECUTION MAP</p>
+      <h2 class="big-title">Core Execution Root Map</h2>
+      <div class="root-grid">
+        <article class="root-card reveal">
+          <p class="mono-label">// ROOT 01</p>
+          <h3>Backend Development</h3>
+          <p>Architecting secure, high-performance REST microservices with Core Java and Spring Boot.</p>
+          <span class="tagline-tag">JAVA &amp; SPRING</span>
+        </article>
+        <article class="root-card reveal">
+          <p class="mono-label">// ROOT 02</p>
+          <h3>Cloud &amp; DevOps</h3>
+          <p>Shipping containers on Kubernetes with Helm, automated by Jenkins CI/CD pipelines.</p>
+          <span class="tagline-tag">DOCKER &amp; K8S</span>
+        </article>
+        <article class="root-card reveal">
+          <p class="mono-label">// ROOT 03</p>
+          <h3>Event-Driven Systems</h3>
+          <p>Connecting distributed services with Kafka, Strimzi, and Schema Registry.</p>
+          <span class="tagline-tag">KAFKA &amp; STREAMS</span>
+        </article>
+        <article class="root-card reveal">
+          <p class="mono-label">// ROOT 04</p>
+          <h3>AI-Native Engineering</h3>
+          <p>Agent workflows with AWS Kiro and Claude, LLM integration through Spring AI and MCP.</p>
+          <span class="tagline-tag">GEN AI &amp; LLM</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- projects -->
     <section id="projects">
-      <h2 class="section-title"><span>03.</span> Featured Projects</h2>
+      <p class="mono-label center">// PROJECTS.INIT</p>
+      <h2 class="big-title">Featured Engineering Projects</h2>
       <div class="projects-grid">
-        <article class="project">
-          <div class="project-top">
-            <i class="fa-regular fa-folder-open"></i>
-            <div class="project-links">
-              <a href="https://github.com/ritikbansod/gre-exam-tracker" target="_blank" rel="noopener" aria-label="GitHub repo"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
+        <article class="project spotlight reveal">
+          <p class="mono-label">// PROJECT 01 · System &amp; Security</p>
           <h3>GRE Exam Tracker</h3>
-          <p>
-            Backend microservices for an online examination platform. JWT-based authentication with
-            role-based authorization (Spring Security), Eureka service discovery, and Swagger/OpenAPI
-            docs, tuned with Hibernate/JPA to handle concurrent users at scale.
-          </p>
-          <ul class="tech"><li>Java</li><li>Spring Boot</li><li>Spring Security</li><li>Eureka</li><li>MySQL</li></ul>
+          <p>Spring Boot microservices platform with Eureka discovery and an API gateway. JWT authentication with role-based authorization, exam authoring, and server-side scored attempts.</p>
+          <ul class="tech"><li>Java</li><li>Spring Boot</li><li>Security</li><li>Eureka</li><li>MySQL</li></ul>
+          <a class="proj-link" href="https://github.com/ritikbansod/gre-exam-tracker" target="_blank" rel="noopener">VIEW REPO &rarr;</a>
         </article>
-        <article class="project">
-          <div class="project-top">
-            <i class="fa-regular fa-folder-open"></i>
-            <div class="project-links">
-              <a href="https://github.com/ritikbansod/kafka-wrapper" target="_blank" rel="noopener" aria-label="GitHub repo"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
+        <article class="project spotlight reveal">
+          <p class="mono-label">// PROJECT 02 · Event Infrastructure</p>
           <h3>Kafka Wrapper</h3>
-          <p>
-            A REST-based abstraction layer over Apache Kafka that simplifies message production and
-            consumption, and enables topic &amp; user management through APIs, removing the dependency
-            on CLI tooling for Kafka-based systems.
-          </p>
-          <ul class="tech"><li>Java</li><li>Spring Boot</li><li>Apache Kafka</li><li>REST</li><li>Distributed Systems</li></ul>
+          <p>A REST abstraction over Apache Kafka: topic lifecycle management, message production, and runtime-registered dynamic consumers over plain HTTP.</p>
+          <ul class="tech"><li>Java</li><li>Spring Boot</li><li>Kafka</li><li>REST</li></ul>
+          <a class="proj-link" href="https://github.com/ritikbansod/kafka-wrapper" target="_blank" rel="noopener">VIEW REPO &rarr;</a>
         </article>
-        <article class="project">
-          <div class="project-top">
-            <i class="fa-regular fa-folder-open"></i>
-            <div class="project-links">
-              <a href="https://github.com/ritikbansod/ritikbansod" target="_blank" rel="noopener" aria-label="GitHub profile README"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <h3>AI-Augmented Developer Platform</h3>
-          <p>
-            My GitHub profile as a living product: an auto-updating README with live stats, a
-            contribution-snake pipeline on GitHub Actions, and an AI-native tooling section,
-            built and operated with the same CI discipline as production services.
-          </p>
-          <ul class="tech"><li>GitHub Actions</li><li>CI/CD</li><li>Markdown</li><li>AWS Kiro</li><li>MCP</li></ul>
+        <article class="project spotlight reveal">
+          <p class="mono-label">// PROJECT 03 · Developer Platform</p>
+          <h3>AI-Augmented Profile</h3>
+          <p>A living GitHub profile operated like a product: auto-updating stats, a contribution-snake pipeline, and an AI-native tooling showcase.</p>
+          <ul class="tech"><li>GitHub Actions</li><li>CI/CD</li><li>Markdown</li><li>Kiro</li><li>MCP</li></ul>
+          <a class="proj-link" href="https://github.com/ritikbansod/ritikbansod" target="_blank" rel="noopener">VIEW REPO &rarr;</a>
         </article>
       </div>
     </section>
 
-    <section id="experience">
-      <h2 class="section-title"><span>04.</span> Experience</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-card">
-            <p class="role">Software Developer <span class="accent">@ Wipro Limited</span></p>
-            <p class="meta">March 2023 to Present · Pune, India</p>
-            <ul>
-              <li>Design and develop enterprise-grade web applications and microservices using Core Java, Spring Boot, and OOAD principles.</li>
-              <li>Built scalable RESTful APIs with a focus on maintainability, performance, and security; resolved concurrency issues with thread-safe design and retry mechanisms.</li>
-              <li>Improved backend processing efficiency by <strong>25%</strong> through workflow and data-processing optimization.</li>
-              <li>Integrated Apache Kafka and Schema Registry using Strimzi for reliable event-driven communication between distributed services.</li>
-              <li>Containerized applications with Docker and deployed on Kubernetes via Helm charts in a Service Mesh environment.</li>
-              <li>Improved deployment efficiency by <strong>30%</strong> with automated Jenkins CI/CD pipelines.</li>
-              <li>Implemented observability with Prometheus and Grafana; performed root-cause analysis of production issues across distributed services.</li>
-              <li>Raised code quality with SonarQube analysis, code reviews, and JUnit 5 / Mockito test coverage.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-card">
-            <p class="role">Bachelor of Engineering <span class="accent">(Electrical Engineering)</span></p>
-            <p class="meta">August 2018 to July 2022 · St. Vincent Pallotti College of Engineering &amp; Technology, Nagpur</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- contact -->
     <section id="contact">
-      <h2 class="section-title"><span>05.</span> Get In Touch</h2>
-      <p class="contact-blurb">
-        I'm open to interesting backend / DevOps problems: microservices, Kubernetes platforms,
-        event-driven systems, or AI-augmented engineering. My inbox is always open.
-      </p>
-      <a class="btn solid big" href="mailto:ritikbansod.work@gmail.com">Say Hello</a>
-      <div class="hero-socials center">
-        <a href="https://github.com/ritikbansod" aria-label="GitHub" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
-        <a href="https://linkedin.com/in/ritik-bansod-3267011b5" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="mailto:ritikbansod.work@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+      <p class="mono-label center">// SYSTEM MESSAGE</p>
+      <h2 class="big-title">Let's Build Something Exceptional.</h2>
+      <div class="contact-grid">
+        <div class="code-block reveal">
+<pre><code>const <b>engineer</b> = {
+  name:   <span class="str">"Ritik Bansod"</span>,
+  role:   <span class="str">"Java Backend Dev"</span>,
+  stack:  [<span class="str">"Spring Boot"</span>, <span class="str">"K8s"</span>, <span class="str">"Kafka"</span>],
+  ai:     [<span class="str">"Kiro"</span>, <span class="str">"Claude"</span>, <span class="str">"MCP"</span>],
+  status: <span class="str">"Open to opportunities"</span>
+};</code></pre>
+        </div>
+        <form class="transmission reveal" action="mailto:ritikbansod.work@gmail.com" method="post" enctype="text/plain">
+          <p class="mono-label">// TRANSMISSION FORM</p>
+          <div class="field-row">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <textarea name="message" rows="5" placeholder="Type your message here..." required></textarea>
+          <button type="submit" class="btn solid">Transmit Message</button>
+          <p class="mono-label dim">// STATUS: <span class="ok">Open to opportunities</span></p>
+        </form>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Designed &amp; built by <a href="https://github.com/ritikbansod">ritikbansod</a> · Pune, India</p>
+    <p class="watermark" aria-hidden="true">RITIK</p>
+    <p class="footer-line">Designed &amp; engineered by <a href="https://github.com/ritikbansod" target="_blank" rel="noopener">ritikbansod</a> · Pune, India</p>
   </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) entry.target.classList.add("visible");
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll("section > .section-title, .skill-card, .project, .timeline-card").forEach(
-    (el) => { el.classList.add("reveal"); observer.observe(el); }
-  );
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
