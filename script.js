@@ -124,13 +124,17 @@
 
 
   /* ---- moving cards: 3D tilt that follows the cursor ---- */
-  document.querySelectorAll(".tilt").forEach((card) => {
+  document.querySelectorAll(".tilt, .cube").forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
+      const isCube = card.classList.contains("cube");
+      const ry = isCube ? x * 10 : x * 16;
+      const rx = isCube ? -y * 8 : -y * 12;
+      const lift = isCube ? 26 : 5;
       card.style.transform =
-        "perspective(850px) rotateY(" + (x * 16).toFixed(2) + "deg) rotateX(" + (-y * 12).toFixed(2) + "deg) translateY(-5px)";
+        "perspective(850px) rotateY(" + ry.toFixed(2) + "deg) rotateX(" + rx.toFixed(2) + "deg) translateZ(" + lift + "px) translateY(-5px)";
     });
     card.addEventListener("mouseleave", () => { card.style.transform = ""; });
   });
