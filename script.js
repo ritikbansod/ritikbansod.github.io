@@ -24,6 +24,40 @@
   }
   if (boot) boot.addEventListener("click", dismissBoot);
 
+  /* ---- scroll-driven color system: each section paints its own theme ---- */
+  const THEMES = {
+    home:      { accent: "#F0B27A", soft: "rgba(240, 178, 122, 0.13)", bg: "#0A0C12" },
+    about:     { accent: "#A78BFA", soft: "rgba(167, 139, 250, 0.12)", bg: "#0C0A16" },
+    expertise: { accent: "#67E8F9", soft: "rgba(103, 232, 249, 0.11)", bg: "#071018" },
+    projects:  { accent: "#6EE7B7", soft: "rgba(110, 231, 183, 0.11)", bg: "#081210" },
+    contact:   { accent: "#93A7FD", soft: "rgba(147, 167, 253, 0.12)", bg: "#090D18" },
+  };
+  const rootStyle = document.documentElement.style;
+  let activeTheme = "";
+  function applyTheme(name) {
+    if (name === activeTheme) return;
+    const t = THEMES[name];
+    if (!t) return;
+    rootStyle.setProperty("--accent", t.accent);
+    rootStyle.setProperty("--accent-soft", t.soft);
+    rootStyle.setProperty("--bg", t.bg);
+    activeTheme = name;
+  }
+  function themeByScroll() {
+    const mid = window.innerHeight * 0.5;
+    let current = "home";
+    for (const id of Object.keys(THEMES)) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const r = el.getBoundingClientRect();
+      if (r.top <= mid && r.bottom >= mid) { current = id; break; }
+    }
+    applyTheme(current);
+  }
+  window.addEventListener("scroll", themeByScroll, { passive: true });
+  themeByScroll();
+
+
   /* ---- hero: scroll scrubs the photo through a 360 rotation ---- */
   const words = [
     ["BACKEND", "ENGINEER", "fill"],
@@ -43,11 +77,13 @@
     const p = Math.min(1, Math.max(0, -heroSection.getBoundingClientRect().top / Math.max(1, total)));
 
     if (avatar) {
-      const swing = Math.sin(p * Math.PI);          // 0 -> 1 -> 0
-      const turn = -32 + 64 * p;                     // rotateY: left profile to right profile
-      const scale = 0.9 + 0.22 * swing;
+      const swing = Math.sin(p * Math.PI);           // 0 -> 1 -> 0
+      const turn = -40 + 80 * p;                     // rotateY: deep left-to-right 3D turn
+      const scale = 0.86 + 0.5 * swing;              // photo enlarges mid-scroll
+      const lift = -26 * swing;                      // floats up at the center
       avatar.style.transform =
-        "perspective(900px) rotateY(" + turn.toFixed(1) + "deg) rotateZ(" + ((p * 10 - 5).toFixed(1)) + "deg) scale(" + scale.toFixed(3) + ")";
+        "perspective(1100px) rotateY(" + turn.toFixed(1) + "deg) rotateX(" + (-8 * swing).toFixed(1) + "deg) "
+        + "translateY(" + lift.toFixed(1) + "px) scale(" + scale.toFixed(3) + ")";
     }
 
     const idx = Math.min(words.length - 1, Math.floor(p * words.length));
