@@ -79,8 +79,8 @@
     if (avatar) {
       const swing = Math.sin(p * Math.PI);           // 0 -> 1 -> 0
       const turn = -40 + 80 * p;                     // rotateY: deep left-to-right 3D turn
-      const scale = 0.86 + 0.5 * swing;              // photo enlarges mid-scroll
-      const lift = -26 * swing;                      // floats up at the center
+      const scale = 0.88 + 0.3 * swing;              // photo enlarges, clamped
+      const lift = -14 * swing;                      // gentle float, stays below the nav
       avatar.style.transform =
         "perspective(1100px) rotateY(" + turn.toFixed(1) + "deg) rotateX(" + (-8 * swing).toFixed(1) + "deg) "
         + "translateY(" + lift.toFixed(1) + "px) scale(" + scale.toFixed(3) + ")";
@@ -89,7 +89,7 @@
     const wrap = document.getElementById("hero-word-wrap");
     if (wrap) {
       wrap.style.transform =
-        "perspective(800px) rotateX(" + (12 - p * 30).toFixed(1) + "deg) translateY(" + (p * -70).toFixed(1) + "px) scale(" + (1 + p * 0.14).toFixed(3) + ")";
+        "perspective(800px) rotateX(" + (12 - p * 24).toFixed(1) + "deg) translateY(" + (p * -30).toFixed(1) + "px) scale(" + (1 + p * 0.1).toFixed(3) + ")";
     }
 
     const idx = Math.min(words.length - 1, Math.floor(p * words.length));
