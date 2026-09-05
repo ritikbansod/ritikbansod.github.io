@@ -87,7 +87,8 @@
     }
 
     const wrap = document.getElementById("hero-word-wrap");
-    if (wrap) {
+    const wide = window.matchMedia("(min-width: 761px)").matches;
+    if (wrap && wide) {
       wrap.style.transform =
         "perspective(800px) rotateX(" + (12 - p * 24).toFixed(1) + "deg) translateY(" + (p * -30).toFixed(1) + "px) scale(" + (1 + p * 0.1).toFixed(3) + ")";
     }

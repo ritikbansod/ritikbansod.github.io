@@ -645,9 +645,21 @@ footer {
   nav ul li { border-top: 1px solid var(--border); }
   nav ul a { display: block; padding: 13px 5vw; }
   #nav-toggle:checked ~ ul { display: flex; }
-  .hero-row { grid-template-columns: 1fr; gap: 22px; }
-  .hero-side, .hero-side.right { max-width: none; text-align: center; margin: 0 auto; }
-  .hero-side.right .mono-label { justify-content: center; }
+  /* compact hero: content must fit the pinned screen, never spill under the nav */
+  .hero-pin {
+    justify-content: flex-start;
+    padding-top: 96px;
+  }
+  .hero-row { grid-template-columns: 1fr; gap: 16px; margin: 18px 0 22px; }
+  .hero-side { display: none; }
+  #hero-word { font-size: clamp(1.9rem, 8.5vw, 3rem); min-height: 0; }
+  #hero-word-wrap { transform: none !important; }
+  .hero-avatar {
+    width: min(190px, 50vw);
+    border-radius: 26px;
+  }
+  .hero-glow-ring { width: 230px; height: 230px; }
+  .hero-actions { margin-bottom: 8px; }
   .bento { grid-template-columns: 1fr 1fr; }
   .bio { grid-column: 1 / -1; }
   .contact-grid { grid-template-columns: 1fr; }
