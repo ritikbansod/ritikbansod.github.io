@@ -715,3 +715,24 @@ nav { perspective: 800px; }
 @media (prefers-reduced-motion: reduce) {
   #hero-word, .watermark, .logo, .big-title { animation: none !important; }
 }
+
+/* ---------- laptop / short screens: compact desktop hero ---------- */
+@media (min-width: 761px) and (max-height: 900px) {
+  .hero-pin { padding-top: 84px; }
+  .eyebrow { margin-bottom: 14px; }
+  #hero-word {
+    font-size: clamp(2.2rem, 9vh, 5.2rem);
+    min-height: 1.95em;
+  }
+  .hero-row { margin: 14px 0 22px; gap: 28px; }
+  .hero-avatar {
+    width: clamp(190px, 34vh, 300px);
+    border-radius: 32px;
+  }
+  .hero-glow-ring {
+    width: clamp(240px, 42vh, 400px);
+    height: clamp(240px, 42vh, 400px);
+  }
+  .hero-actions { margin-bottom: 10px; }
+  .scroll-hint { bottom: 16px; }
+}
