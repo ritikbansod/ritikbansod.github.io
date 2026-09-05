@@ -86,6 +86,12 @@
         + "translateY(" + lift.toFixed(1) + "px) scale(" + scale.toFixed(3) + ")";
     }
 
+    const wrap = document.getElementById("hero-word-wrap");
+    if (wrap) {
+      wrap.style.transform =
+        "perspective(800px) rotateX(" + (12 - p * 30).toFixed(1) + "deg) translateY(" + (p * -70).toFixed(1) + "px) scale(" + (1 + p * 0.14).toFixed(3) + ")";
+    }
+
     const idx = Math.min(words.length - 1, Math.floor(p * words.length));
     if (idx !== lastIndex && wordEl) {
       const parts = words[idx];
