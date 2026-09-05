@@ -112,8 +112,7 @@
   if (window.matchMedia("(pointer: fine)").matches) {
     document.addEventListener("mousemove", (e) => {
       if (!glow) return;
-      glow.style.left = e.clientX + "px";
-      glow.style.top = e.clientY + "px";
+      glow.style.transform = "translate3d(" + (e.clientX - 280) + "px, " + (e.clientY - 280) + "px, 0)";
     });
   } else if (glow) {
     glow.remove();

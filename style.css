@@ -215,13 +215,13 @@ header#home {
     4px 4px 0 #533b28, 5px 5px 0 #4b3626, 6px 6px 0 #433124,
     7px 7px 0 #3b2c22, 8px 8px 0 #332720,
     0 0 46px rgba(232, 168, 124, 0.35);
-  transition: opacity 0.25s, color 0.8s;
+  transition: opacity 0.25s, color 0.8s, text-shadow 0.45s ease;
 }
 #hero-word.outline {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--accent);
   text-shadow: 0 0 42px var(--accent-soft);
-  transition: opacity 0.25s, -webkit-text-stroke-color 0.8s;
+  transition: opacity 0.25s, -webkit-text-stroke-color 0.8s, text-shadow 0.45s ease;
 }
 #hero-word.swap-out { opacity: 0; transform: translateY(14px); }
 .hero-row {
@@ -594,12 +594,15 @@ footer {
 .footer-line a:hover { text-decoration: underline; }
 
 /* ---------- reveal ---------- */
-.reveal {
-  opacity: 0;
-  transform: perspective(900px) rotateX(10deg) translateY(26px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+.reveal { opacity: 0; }
+.reveal.visible {
+  opacity: 1;
+  animation: blockIn 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
 }
-.reveal.visible { opacity: 1; transform: perspective(900px) rotateX(0deg) translateY(0); }
+@keyframes blockIn {
+  from { opacity: 0; transform: perspective(900px) rotateX(12deg) translateY(28px); }
+  to { opacity: 1; transform: perspective(900px) rotateX(0deg) translateY(0); }
+}
 
 /* ---------- moving cards: float + 3D tilt ---------- */
 .id-card img { animation: floating 5.5s ease-in-out infinite; }
@@ -609,7 +612,7 @@ footer {
 }
 .tilt {
   transform-style: preserve-3d;
-  transition: transform 0.18s ease-out, border-color 0.4s;
+  transition: transform 0.12s ease-out, border-color 0.4s;
   will-change: transform;
 }
 .tilt:hover { border-color: var(--accent); }
@@ -637,4 +640,12 @@ footer {
   .bento { grid-template-columns: 1fr 1fr; }
   .bio { grid-column: 1 / -1; }
   .contact-grid { grid-template-columns: 1fr; }
+}
+
+/* ---------- accessibility: reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #grain, .marquee-track, .id-card img, .dot-live { animation: none !important; }
+  .reveal { opacity: 1; }
+  .reveal.visible { animation: none; }
+  html { scroll-behavior: auto; }
 }
