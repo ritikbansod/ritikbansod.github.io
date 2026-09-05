@@ -546,3 +546,16 @@ footer {
   .contact-grid { grid-template-columns: 1fr; }
   .cursor-glow-off #cursor-glow { display: none; }
 }
+
+/* ---------- moving cards: float + 3D tilt ---------- */
+.id-card img { animation: floating 5.5s ease-in-out infinite; }
+@keyframes floating {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-12px) rotate(2deg); }
+}
+.tilt {
+  transform-style: preserve-3d;
+  transition: transform 0.18s ease-out, border-color 0.25s;
+  will-change: transform;
+}
+.tilt:hover { border-color: var(--terracotta); }

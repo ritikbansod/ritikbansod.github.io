@@ -43,8 +43,11 @@
     const p = Math.min(1, Math.max(0, -heroSection.getBoundingClientRect().top / Math.max(1, total)));
 
     if (avatar) {
-      const scale = 0.92 + 0.2 * Math.sin(p * Math.PI);
-      avatar.style.transform = "rotate(" + (p * 360).toFixed(1) + "deg) scale(" + scale.toFixed(3) + ")";
+      const swing = Math.sin(p * Math.PI);          // 0 -> 1 -> 0
+      const turn = -32 + 64 * p;                     // rotateY: left profile to right profile
+      const scale = 0.9 + 0.22 * swing;
+      avatar.style.transform =
+        "perspective(900px) rotateY(" + turn.toFixed(1) + "deg) rotateZ(" + ((p * 10 - 5).toFixed(1)) + "deg) scale(" + scale.toFixed(3) + ")";
     }
 
     const idx = Math.min(words.length - 1, Math.floor(p * words.length));
@@ -81,6 +84,19 @@
       card.style.setProperty("--mx", (e.clientX - rect.left) + "px");
       card.style.setProperty("--my", (e.clientY - rect.top) + "px");
     });
+  });
+
+
+  /* ---- moving cards: 3D tilt that follows the cursor ---- */
+  document.querySelectorAll(".tilt").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform =
+        "perspective(850px) rotateY(" + (x * 16).toFixed(2) + "deg) rotateX(" + (-y * 12).toFixed(2) + "deg) translateY(-5px)";
+    });
+    card.addEventListener("mouseleave", () => { card.style.transform = ""; });
   });
 
   /* ---- scroll reveal ---- */
