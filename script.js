@@ -68,7 +68,7 @@
   const heroSection = document.getElementById("home");
   const avatar = document.getElementById("hero-avatar");
   const hint = document.getElementById("scroll-hint");
-  const wordEl = document.getElementById("hero-word");
+  const wordEl = document.getElementById("hero-word-inner");
   let lastIndex = -1;
 
   function scrub() {

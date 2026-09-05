@@ -208,7 +208,7 @@ header#home {
   align-items: center;
   justify-content: center;
 }
-#hero-word.fill {
+#hero-word-inner.fill {
   color: var(--text);
   text-shadow:
     1px 1px 0 #6b4a2e, 2px 2px 0 #63452c, 3px 3px 0 #5b402a,
@@ -217,7 +217,7 @@ header#home {
     0 0 46px rgba(232, 168, 124, 0.35);
   transition: opacity 0.25s, color 0.8s, text-shadow 0.45s ease;
 }
-#hero-word.outline {
+#hero-word-inner.outline {
   color: transparent;
   -webkit-text-stroke: 1.5px var(--accent);
   text-shadow: 0 0 42px var(--accent-soft);
@@ -648,4 +648,46 @@ footer {
   .reveal { opacity: 1; }
   .reveal.visible { animation: none; }
   html { scroll-behavior: auto; }
+}
+
+/* ---------- continuous 3D rotation ---------- */
+#hero-word {
+  transform-style: preserve-3d;
+  animation: heroWord3d 9s ease-in-out infinite;
+}
+@keyframes heroWord3d {
+  0%, 100% { transform: rotateY(-14deg) rotateX(7deg); }
+  50% { transform: rotateY(14deg) rotateX(-5deg); }
+}
+footer { perspective: 1200px; }
+.watermark {
+  transform-style: preserve-3d;
+  animation: watermarkSpin3d 16s linear infinite;
+}
+@keyframes watermarkSpin3d {
+  from { transform: rotateY(0deg) rotateX(6deg); }
+  to { transform: rotateY(360deg) rotateX(6deg); }
+}
+.logo {
+  display: inline-block;
+  transform-style: preserve-3d;
+  animation: logoSway3d 7s ease-in-out infinite;
+}
+@keyframes logoSway3d {
+  0%, 100% { transform: rotateY(-16deg) rotateX(6deg); }
+  50% { transform: rotateY(16deg) rotateX(-4deg); }
+}
+nav { perspective: 800px; }
+.big-title {
+  transform-style: preserve-3d;
+  animation: titleSway3d 11s ease-in-out infinite;
+}
+@keyframes titleSway3d {
+  0%, 100% { transform: rotateY(-7deg) rotateX(4deg); }
+  50% { transform: rotateY(7deg) rotateX(-3deg); }
+}
+
+/* ---------- reduced motion: stop the continuous spins ---------- */
+@media (prefers-reduced-motion: reduce) {
+  #hero-word, .watermark, .logo, .big-title { animation: none !important; }
 }
