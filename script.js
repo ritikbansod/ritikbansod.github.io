@@ -82,7 +82,7 @@
       if (!w || !h) return;
       // elliptical rings fitted to the stage: more room, bigger tiles
       const RX = w * 0.44, RY = h * 0.42;
-      const ringScale = [0.42, 0.68, 1.0];   // inner, middle, outer
+      const ringScale = [0.5, 0.72, 1.0];   // inner, middle, outer
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
         const rx = RX * ringScale[ringNo];
