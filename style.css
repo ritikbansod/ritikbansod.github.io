@@ -429,8 +429,8 @@ section { padding: 90px 0 40px; }
 .orbit-of { color: var(--bone-dim); font-size: 0.82rem; }
 .orbit-stage {
   position: relative;
-  width: min(94vw, 780px);
-  height: min(94vw, 780px);
+  width: min(96vw, 1150px);
+  height: min(88svh, 780px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -446,9 +446,9 @@ section { padding: 90px 0 40px; }
   position: absolute;
   left: 50%;
   top: 50%;
-  width: clamp(58px, 11vw, 84px);
-  padding: 9px 4px 7px;
-  border-radius: 13px;
+  width: clamp(64px, 13vw, 96px);
+  padding: 10px 5px 8px;
+  border-radius: 14px;
   background: linear-gradient(160deg, var(--panel), var(--bg-soft));
   border: 1px solid var(--border);
   display: flex;
@@ -462,7 +462,7 @@ section { padding: 90px 0 40px; }
 }
 .orb-skill.on { opacity: 1; }
 .orb-skill:hover { border-color: var(--accent); }
-.orb-skill img { width: 40px; height: 40px; border-radius: 8px; }
+.orb-skill img { width: 46px; height: 46px; border-radius: 9px; }
 .orb-skill .abbr {
   font-family: var(--mono);
   font-size: 0.62rem;
@@ -471,7 +471,7 @@ section { padding: 90px 0 40px; }
 }
 .orb-skill .oname {
   font-family: var(--mono);
-  font-size: 0.5rem;
+  font-size: 0.56rem;
   color: var(--bone-dim);
   text-align: center;
   line-height: 1.25;

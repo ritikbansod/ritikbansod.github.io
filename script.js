@@ -78,17 +78,19 @@
 
     function layoutOrbit() {
       const stage = orbitEl.parentElement;
-      const half = Math.min(stage.offsetWidth, stage.offsetHeight) / 2;
-      if (!half) return;
-      const maxRing = (14 * 100) / (2 * Math.PI);
-      const scale = Math.min(1, (half - 52) / maxRing);
+      const w = stage.offsetWidth, h = stage.offsetHeight;
+      if (!w || !h) return;
+      // elliptical rings fitted to the stage: more room, bigger tiles
+      const RX = w * 0.44, RY = h * 0.42;
+      const ringScale = [0.42, 0.68, 1.0];   // inner, middle, outer
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
-        const r = ((count * 100) / (2 * Math.PI)) * scale;
+        const rx = RX * ringScale[ringNo];
+        const ry = RY * ringScale[ringNo];
         for (let k = 0; k < count; k++, idx++) {
           const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
-          const x = half + Math.cos(angle) * r;
-          const y = half + Math.sin(angle) * r;
+          const x = w / 2 + Math.cos(angle) * rx;
+          const y = h / 2 + Math.sin(angle) * ry;
           tiles[idx].style.left = x + "px";
           tiles[idx].style.top = y + "px";
         }
@@ -103,7 +105,7 @@
       const p = Math.min(1, Math.max(0, -stackSection.getBoundingClientRect().top / Math.max(1, total)));
       const ease = 1 - Math.pow(1 - p, 2);
       orbitEl.style.transform =
-        "scale(" + (0.3 + 0.7 * ease).toFixed(3) + ") rotate(" + ((ease * 2 - 1) * 8).toFixed(1) + "deg)";
+        "scale(" + (0.3 + 0.7 * ease).toFixed(3) + ")";
       const revealed = Math.round(ease * SKILLS.length);
       tiles.forEach(function (tile, i) { tile.classList.toggle("on", i < revealed); });
       if (orbitCount) orbitCount.textContent = String(revealed);
