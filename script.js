@@ -24,6 +24,96 @@
   }
   if (boot) boot.addEventListener("click", dismissBoot);
 
+
+  /* ---- skill orbit: circle grows and fills with skills on scroll ---- */
+  const TECH = [
+    ["java","Java"],["spring","Spring Boot"],["hibernate","Hibernate"],["python","Python"],
+    ["docker","Docker"],["kubernetes","Kubernetes"],["kafka","Apache Kafka"],["mysql","MySQL"],
+    ["postgres","PostgreSQL"],["jenkins","Jenkins"],["prometheus","Prometheus"],["grafana","Grafana"],
+    ["git","Git"],["github","GitHub"],["linux","Linux"],["maven","Maven"],["bash","Bash"],
+    ["eclipse","Eclipse IDE"],["postman","Postman"],["html","HTML"],["css","CSS"],["js","JavaScript"],
+    ["aws","AWS"],
+  ].map(([id, name]) => ({ icon: id, name }));
+  const TECH_TEXT = ["Helm","Strimzi","SonarQube","Gerrit","Swagger","REST APIs",
+    "AWS Kiro","Claude","MCP","Spring AI","LangChain4j"].map((n) => ({ icon: null, name: n }));
+  const ALL_SKILLS = TECH.concat(TECH_TEXT);
+
+  const orbitEl = document.getElementById("orbit");
+  const orbitCount = document.getElementById("orbit-count");
+  const orbitHint = document.getElementById("orbit-hint");
+  const stackSection = document.getElementById("stack");
+
+  if (orbitEl && stackSection) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const tiles = [];
+
+    ALL_SKILLS.forEach((skill, i) => {
+      const tile = document.createElement("div");
+      tile.className = "orb-skill";
+      if (skill.icon) {
+        const img = document.createElement("img");
+        img.src = "https://skillicons.dev/icons?i=" + skill.icon + "&theme=dark";
+        img.alt = skill.name;
+        img.loading = "lazy";
+        tile.appendChild(img);
+      } else {
+        const abbr = document.createElement("span");
+        abbr.className = "abbr";
+        abbr.textContent = skill.name;
+        tile.appendChild(abbr);
+      }
+      const label = document.createElement("span");
+      label.className = "oname";
+      label.textContent = skill.name;
+      tile.appendChild(label);
+      orbitEl.appendChild(tile);
+      tiles.push(tile);
+    });
+
+    const OUTER = TECH.length;                 // logos on the outer ring
+    const TOTAL = ALL_SKILLS.length;           // 34
+
+    function layoutOrbit() {
+      const size = orbitEl.offsetWidth || 1;
+      const cx = size / 2, cy = size / 2;
+      const rOuter = size / 2 - 42;
+      const rInner = rOuter * 0.58;
+      tiles.forEach((tile, i) => {
+        const onInner = i >= OUTER;
+        const ringCount = onInner ? TOTAL - OUTER : OUTER;
+        const ringIdx = onInner ? i - OUTER : i;
+        const angle = (ringIdx / ringCount) * Math.PI * 2 - Math.PI / 2;
+        const r = onInner ? rInner : rOuter;
+        const x = cx + Math.cos(angle) * r;
+        const y = cy + Math.sin(angle) * r * 0.92;
+        tile.style.left = x + "px";
+        tile.style.top = y + "px";
+      });
+      if (reduceMotion) tiles.forEach((t) => t.classList.add("on"));
+    }
+    layoutOrbit();
+    window.addEventListener("resize", layoutOrbit);
+
+    function orbitScrub() {
+      const total = stackSection.offsetHeight - window.innerHeight;
+      const p = Math.min(1, Math.max(0, -stackSection.getBoundingClientRect().top / Math.max(1, total)));
+      const ease = 1 - Math.pow(1 - p, 2);
+      orbitEl.style.transform =
+        "scale(" + (0.35 + 0.65 * ease).toFixed(3) + ") rotate(" + ((ease * 2 - 1) * 10).toFixed(1) + "deg)";
+      const revealed = Math.round(ease * TOTAL);
+      tiles.forEach((tile, i) => tile.classList.toggle("on", i < revealed));
+      if (orbitCount) orbitCount.textContent = String(revealed);
+      if (orbitHint) orbitHint.style.opacity = String(Math.max(0, 1 - p * 5));
+    }
+    if (reduceMotion) {
+      if (orbitCount) orbitCount.textContent = String(TOTAL);
+    } else {
+      window.addEventListener("scroll", orbitScrub, { passive: true });
+      window.addEventListener("resize", orbitScrub);
+      orbitScrub();
+    }
+  }
+
   /* ---- scroll-driven color system: each section paints its own theme ---- */
   const THEMES = {
     home:      { accent: "#F0B27A", soft: "rgba(240, 178, 122, 0.13)", bg: "#0A0C12" },
