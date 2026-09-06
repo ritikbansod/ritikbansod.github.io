@@ -26,17 +26,23 @@
 
 
   /* ---- skill orbit: circle grows and fills with skills on scroll ---- */
-  const TECH = [
+  const TECH_LOGOS = [
     ["java","Java"],["spring","Spring Boot"],["hibernate","Hibernate"],["python","Python"],
     ["docker","Docker"],["kubernetes","Kubernetes"],["kafka","Apache Kafka"],["mysql","MySQL"],
     ["postgres","PostgreSQL"],["jenkins","Jenkins"],["prometheus","Prometheus"],["grafana","Grafana"],
     ["git","Git"],["github","GitHub"],["linux","Linux"],["maven","Maven"],["bash","Bash"],
     ["eclipse","Eclipse IDE"],["postman","Postman"],["html","HTML"],["css","CSS"],["js","JavaScript"],
     ["aws","AWS"],
-  ].map(([id, name]) => ({ icon: id, name }));
+  ].map(function (pair) { return { icon: pair[0], name: pair[1] }; });
   const TECH_TEXT = ["Helm","Strimzi","SonarQube","Gerrit","Swagger","REST APIs",
-    "AWS Kiro","Claude","MCP","Spring AI","LangChain4j"].map((n) => ({ icon: null, name: n }));
-  const ALL_SKILLS = TECH.concat(TECH_TEXT);
+    "AWS Kiro","Claude","MCP","Spring AI","LangChain4j"].map(function (n) { return { icon: null, name: n }; });
+
+  // ring assignment: inner 8, middle 12, outer 14 (filled inner -> outer)
+  const RING_INNER = TECH_LOGOS.slice(0, 8).concat(TECH_TEXT.slice(0, 4));
+  const RING_MIDDLE = TECH_LOGOS.slice(8, 20).concat(TECH_TEXT.slice(4, 7));
+  const RING_OUTER = TECH_LOGOS.slice(20, 23).concat(TECH_TEXT.slice(7));
+  const SKILLS = RING_INNER.concat(RING_MIDDLE, RING_OUTER);
+  const RING_SIZES = [RING_INNER.length, RING_MIDDLE.length, RING_OUTER.length];
 
   const orbitEl = document.getElementById("orbit");
   const orbitCount = document.getElementById("orbit-count");
@@ -47,7 +53,7 @@
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const tiles = [];
 
-    ALL_SKILLS.forEach((skill, i) => {
+    SKILLS.forEach(function (skill) {
       const tile = document.createElement("div");
       tile.className = "orb-skill";
       if (skill.icon) {
@@ -70,26 +76,24 @@
       tiles.push(tile);
     });
 
-    const OUTER = TECH.length;                 // logos on the outer ring
-    const TOTAL = ALL_SKILLS.length;           // 34
-
     function layoutOrbit() {
-      const size = orbitEl.offsetWidth || 1;
-      const cx = size / 2, cy = size / 2;
-      const rOuter = size / 2 - 42;
-      const rInner = rOuter * 0.58;
-      tiles.forEach((tile, i) => {
-        const onInner = i >= OUTER;
-        const ringCount = onInner ? TOTAL - OUTER : OUTER;
-        const ringIdx = onInner ? i - OUTER : i;
-        const angle = (ringIdx / ringCount) * Math.PI * 2 - Math.PI / 2;
-        const r = onInner ? rInner : rOuter;
-        const x = cx + Math.cos(angle) * r;
-        const y = cy + Math.sin(angle) * r * 0.92;
-        tile.style.left = x + "px";
-        tile.style.top = y + "px";
+      const stage = orbitEl.parentElement;
+      const half = Math.min(stage.offsetWidth, stage.offsetHeight) / 2;
+      if (!half) return;
+      const maxRing = (14 * 100) / (2 * Math.PI);
+      const scale = Math.min(1, (half - 52) / maxRing);
+      let idx = 0;
+      RING_SIZES.forEach(function (count, ringNo) {
+        const r = ((count * 100) / (2 * Math.PI)) * scale;
+        for (let k = 0; k < count; k++, idx++) {
+          const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
+          const x = half + Math.cos(angle) * r;
+          const y = half + Math.sin(angle) * r;
+          tiles[idx].style.left = x + "px";
+          tiles[idx].style.top = y + "px";
+        }
       });
-      if (reduceMotion) tiles.forEach((t) => t.classList.add("on"));
+      if (reduceMotion) tiles.forEach(function (t2) { t2.classList.add("on"); });
     }
     layoutOrbit();
     window.addEventListener("resize", layoutOrbit);
@@ -99,21 +103,20 @@
       const p = Math.min(1, Math.max(0, -stackSection.getBoundingClientRect().top / Math.max(1, total)));
       const ease = 1 - Math.pow(1 - p, 2);
       orbitEl.style.transform =
-        "scale(" + (0.35 + 0.65 * ease).toFixed(3) + ") rotate(" + ((ease * 2 - 1) * 10).toFixed(1) + "deg)";
-      const revealed = Math.round(ease * TOTAL);
-      tiles.forEach((tile, i) => tile.classList.toggle("on", i < revealed));
+        "scale(" + (0.3 + 0.7 * ease).toFixed(3) + ") rotate(" + ((ease * 2 - 1) * 8).toFixed(1) + "deg)";
+      const revealed = Math.round(ease * SKILLS.length);
+      tiles.forEach(function (tile, i) { tile.classList.toggle("on", i < revealed); });
       if (orbitCount) orbitCount.textContent = String(revealed);
       if (orbitHint) orbitHint.style.opacity = String(Math.max(0, 1 - p * 5));
     }
     if (reduceMotion) {
-      if (orbitCount) orbitCount.textContent = String(TOTAL);
+      if (orbitCount) orbitCount.textContent = String(SKILLS.length);
     } else {
       window.addEventListener("scroll", orbitScrub, { passive: true });
-      window.addEventListener("resize", orbitScrub);
+      window.addEventListener("resize", function () { layoutOrbit(); orbitScrub(); });
       orbitScrub();
     }
   }
-
   /* ---- scroll-driven color system: each section paints its own theme ---- */
   const THEMES = {
     home:      { accent: "#F0B27A", soft: "rgba(240, 178, 122, 0.13)", bg: "#0A0C12" },
