@@ -104,9 +104,10 @@
       const total = stackSection.offsetHeight - window.innerHeight;
       const p = Math.min(1, Math.max(0, -stackSection.getBoundingClientRect().top / Math.max(1, total)));
       const ease = 1 - Math.pow(1 - p, 2);
+      const fill = Math.min(1, p * 2);            // circle completes in the first half
       orbitEl.style.transform =
-        "scale(" + (0.3 + 0.7 * ease).toFixed(3) + ")";
-      const revealed = Math.round(ease * SKILLS.length);
+        "scale(" + (0.55 + 0.45 * fill).toFixed(3) + ")";
+      const revealed = Math.round(Math.min(1, p * 2) * SKILLS.length);
       tiles.forEach(function (tile, i) { tile.classList.toggle("on", i < revealed); });
       if (orbitCount) orbitCount.textContent = String(revealed);
       if (orbitHint) orbitHint.style.opacity = String(Math.max(0, 1 - p * 5));
