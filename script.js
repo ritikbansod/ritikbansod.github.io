@@ -249,4 +249,21 @@
     { threshold: 0.12 }
   );
   document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+  /* ---- Kview mockup interactive tab switcher ---- */
+  const mockupTabs = document.querySelectorAll(".mockup-tab");
+  const mockupSlides = document.querySelectorAll(".mockup-slide");
+  if (mockupTabs.length && mockupSlides.length) {
+    mockupTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = "slide-" + tab.getAttribute("data-target");
+        mockupTabs.forEach((t) => t.classList.remove("active"));
+        mockupSlides.forEach((s) => s.classList.remove("active"));
+        tab.classList.add("active");
+        const targetSlide = document.getElementById(targetId);
+        if (targetSlide) targetSlide.classList.add("active");
+      });
+    });
+  }
 })();
+
