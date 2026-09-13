@@ -81,7 +81,9 @@
       const w = stage.offsetWidth, h = stage.offsetHeight;
       if (!w || !h) return;
       // elliptical rings fitted to the stage: more room, bigger tiles
-      const RX = w * 0.44, RY = h * 0.42;
+      const isMobile = w < 480;
+      const RX = isMobile ? w * 0.38 : w * 0.44;
+      const RY = isMobile ? h * 0.38 : h * 0.42;
       const ringScale = [0.5, 0.72, 1.0];   // inner, middle, outer
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
@@ -262,6 +264,12 @@
         tab.classList.add("active");
         const targetSlide = document.getElementById(targetId);
         if (targetSlide) targetSlide.classList.add("active");
+  /* ---- mobile menu drawer auto-collapse on link click ---- */
+  const navToggle = document.getElementById("nav-toggle");
+  if (navToggle) {
+    document.querySelectorAll("nav ul a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navToggle.checked = false;
       });
     });
   }
