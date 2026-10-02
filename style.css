@@ -446,14 +446,13 @@ section { padding: 90px 0 40px; }
   left: 0;
   top: 0;
   width: var(--tw, 74px);
+  height: calc(var(--tw, 74px) * 0.92 + 10px);
   border-radius: 16px;
   background: linear-gradient(160deg, var(--panel), var(--bg-soft));
   border: 1px solid var(--border);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
   opacity: 0;
   scale: 0.2;
   transition: opacity 0.4s ease, scale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.25s;
@@ -464,7 +463,7 @@ section { padding: 90px 0 40px; }
 .orb-skill img { width: var(--ih, 46px); height: var(--ih, 46px); border-radius: 10px; }
 .orb-skill .abbr {
   font-family: var(--mono);
-  font-size: clamp(0.56rem, 1.1vw, 0.72rem);
+  font-size: clamp(0.6rem, 1.15vw, 0.76rem);
   font-weight: 600;
   color: var(--accent);
 }
