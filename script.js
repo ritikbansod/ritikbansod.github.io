@@ -54,6 +54,9 @@
     SKILLS.forEach(function (skill) {
       const tile = document.createElement("div");
       tile.className = "orb-skill";
+      tile.setAttribute("data-name", skill.name);
+      tile.setAttribute("aria-label", skill.name);
+      tile.title = skill.name;
       if (skill.icon) {
         const img = document.createElement("img");
         img.src = "https://skillicons.dev/icons?i=" + skill.icon + "&theme=dark";
@@ -63,13 +66,9 @@
       } else {
         const abbr = document.createElement("span");
         abbr.className = "abbr";
-        abbr.textContent = skill.name;
+        abbr.textContent = skill.name.split(" ")[0];
         tile.appendChild(abbr);
       }
-      const label = document.createElement("span");
-      label.className = "oname";
-      label.textContent = skill.name;
-      tile.appendChild(label);
       orbitEl.appendChild(tile);
       tiles.push(tile);
     });
@@ -80,19 +79,19 @@
       const minHalf = Math.min(w, h) / 2;
       // Solve tile width so three rings + guaranteed radial gaps fit the circle:
       // r1 = 1.846*tw (10 tiles), r3 = r1 + 2 gaps, gap = 1.14*(tw+12).
-      let tw = 92;
-      while (tw > 38) {
-        const gap = 1.14 * (tw + 12);
+      let tw = 104;
+      while (tw > 44) {
+        const gap = 1.16 * (tw * 0.92 + 10);
         const r3 = 1.846 * tw + 2 * gap;
-        if (r3 + (tw + 12) / 2 + 8 <= minHalf) break;
+        if (r3 + (tw * 0.92 + 10) / 2 + 8 <= minHalf) break;
         tw -= 2;
       }
-      const gap = 1.14 * (tw + 12);
+      const gap = 1.16 * (tw * 0.92 + 10);
       const r1 = 1.846 * tw;
       const r2 = Math.max((RING_SIZES[1] * 1.16 * tw) / (2 * Math.PI), r1 + gap);
       const r3 = Math.max((RING_SIZES[2] * 1.16 * tw) / (2 * Math.PI), r2 + gap);
       const radii = [r1, r2, r3];
-      const imgH = Math.min(52, tw * 0.55);
+      const imgH = Math.min(56, tw * 0.62);
       orbitEl.style.setProperty("--tw", tw + "px");
       orbitEl.style.setProperty("--ih", imgH + "px");
       let idx = 0;
@@ -101,7 +100,7 @@
         for (let k = 0; k < count; k++, idx++) {
           const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
           tiles[idx].style.left = (w / 2 + Math.cos(angle) * r - tw / 2) + "px";
-          tiles[idx].style.top = (h / 2 + Math.sin(angle) * r - (tw + 12) / 2) + "px";
+          tiles[idx].style.top = (h / 2 + Math.sin(angle) * r - (tw * 0.92 + 10) / 2) + "px";
         }
       });
       if (reduceMotion) tiles.forEach(function (t2) { t2.classList.add("on"); });
