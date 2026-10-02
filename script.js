@@ -25,7 +25,7 @@
   if (boot) boot.addEventListener("click", dismissBoot);
 
 
-  /* ---- skill orbit: circle grows and fills with skills on scroll ---- */
+  /* ---- chakra orbit: wheel spins and skills fill in around it ---- */
   const TECH_LOGOS = [
     ["java","Java"],["spring","Spring Boot"],["hibernate","Hibernate"],["python","Python"],
     ["docker","Docker"],["kubernetes","Kubernetes"],["kafka","Apache Kafka"],["mysql","MySQL"],
@@ -37,7 +37,6 @@
   const TECH_TEXT = ["Helm","Strimzi","SonarQube","Gerrit","Swagger","REST APIs",
     "AWS Kiro","Claude","MCP","Spring AI","LangChain4j"].map(function (n) { return { icon: null, name: n }; });
 
-  // ring assignment: inner 8, middle 12, outer 14 (filled inner -> outer)
   const RING_INNER = TECH_LOGOS.slice(0, 8).concat(TECH_TEXT.slice(0, 4));
   const RING_MIDDLE = TECH_LOGOS.slice(8, 20).concat(TECH_TEXT.slice(4, 7));
   const RING_OUTER = TECH_LOGOS.slice(20, 23).concat(TECH_TEXT.slice(7));
@@ -46,7 +45,6 @@
 
   const orbitEl = document.getElementById("orbit");
   const orbitCount = document.getElementById("orbit-count");
-  const orbitHint = document.getElementById("orbit-hint");
   const stackSection = document.getElementById("stack");
 
   if (orbitEl && stackSection) {
@@ -77,37 +75,21 @@
     });
 
     function layoutOrbit() {
-      const stage = orbitEl.parentElement;
-      const w = stage.clientWidth || 1;
-      const h = stage.clientHeight || 1;
-      // tile size: as large as fits, given the tightest ring must hold 14 tiles
-      const maxRingCount = 14;
-      const tileW = Math.max(64, Math.min(104, (w * 2 * Math.PI / maxRingCount) * 0.72));
-      const tileH = tileW * 1.32;
-      const gap = tileW * 0.16;
-      const step = tileW + gap;
-
-      // radii: each ring's circumference must fit its tiles at `step`
-      const needed = (count) => (count * step) / (2 * Math.PI);
-      const rxMax = w / 2 - tileW / 2 - 4;
-      const ryMax = h / 2 - tileH / 2 - 4;
-      const scale = Math.min(1, rxMax / needed(14), ryMax / needed(14));
-      const RINGS_R = RING_SIZES.map((count) => needed(count) * scale);
-
+      const w = orbitEl.offsetWidth || 1;
+      const h = orbitEl.offsetHeight || 1;
+      // tile size from the tightest ring's capacity: overlap is impossible
+      const tileW = Math.max(60, Math.min(100, (w * 2 * Math.PI / 14) * 0.7));
+      const step = tileW * 1.18;
+      const needed = function (count) { return (count * step) / (2 * Math.PI); };
+      const scale = Math.min(1, (w / 2 - tileW / 2 - 6) / needed(14), (h / 2 - tileW * 0.85 - 6) / needed(14));
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
-        const rx = RINGS_R[ringNo];
-        const ry = RINGS_R[ringNo] * (h / Math.max(1, w)) * 1.15;
+        const r = needed(count) * scale;
         for (let k = 0; k < count; k++, idx++) {
           const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
-          const x = w / 2 + Math.cos(angle) * rx - tileW / 2;
-          const y = h / 2 + Math.sin(angle) * ry - tileH / 2;
-          const t = tiles[idx];
-          t.style.left = x + "px";
-          t.style.top = y + "px";
-          t.style.width = tileW + "px";
-          t.style.height = tileH + "px";
-          t.style.transform = "translate(0,0) scale(1)";
+          tiles[idx].style.left = (w / 2 + Math.cos(angle) * r - tileW / 2) + "px";
+          tiles[idx].style.top = (h / 2 + Math.sin(angle) * r - tileW * 0.82) + "px";
+          tiles[idx].style.width = tileW + "px";
         }
       });
       if (reduceMotion) tiles.forEach(function (t2) { t2.classList.add("on"); });
@@ -115,23 +97,29 @@
     layoutOrbit();
     window.addEventListener("resize", layoutOrbit);
 
-    function orbitScrub() {
-      const total = stackSection.offsetHeight - window.innerHeight;
-      const p = Math.min(1, Math.max(0, -stackSection.getBoundingClientRect().top / Math.max(1, total)));
-      const ease = 1 - Math.pow(1 - p, 2);
-      // circle completes in the first half; whole-orbit scale removed to keep
-      // computed positions exact (no overlap during growth)
-      const revealed = Math.round(Math.min(1, p * 2) * SKILLS.length);
-      tiles.forEach(function (tile, i) { tile.classList.toggle("on", i < revealed); });
-      if (orbitCount) orbitCount.textContent = String(revealed);
-      if (orbitHint) orbitHint.style.opacity = String(Math.max(0, 1 - p * 5));
+    function fillChakra() {
+      orbitEl.classList.add("spun");           // wheel spins 210 deg and settles
+      let shown = 0;
+      const timer = setInterval(function () {
+        shown += 1;
+        if (shown <= SKILLS.length && tiles[shown - 1]) tiles[shown - 1].classList.add("on");
+        if (orbitCount) orbitCount.textContent = String(Math.min(shown, SKILLS.length));
+        if (shown >= SKILLS.length) clearInterval(timer);
+      }, 62);
     }
+
     if (reduceMotion) {
       if (orbitCount) orbitCount.textContent = String(SKILLS.length);
     } else {
-      window.addEventListener("scroll", orbitScrub, { passive: true });
-      window.addEventListener("resize", function () { layoutOrbit(); orbitScrub(); });
-      orbitScrub();
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            fillChakra();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.25 });
+      observer.observe(orbitEl);
     }
   }
   /* ---- scroll-driven color system: each section paints its own theme ---- */
