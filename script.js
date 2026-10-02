@@ -78,23 +78,36 @@
 
     function layoutOrbit() {
       const stage = orbitEl.parentElement;
-      const w = stage.offsetWidth, h = stage.offsetHeight;
-      if (!w || !h) return;
-      // elliptical rings fitted to the stage: more room, bigger tiles
-      const isMobile = w < 480;
-      const RX = isMobile ? w * 0.38 : w * 0.44;
-      const RY = isMobile ? h * 0.38 : h * 0.42;
-      const ringScale = [0.5, 0.72, 1.0];   // inner, middle, outer
+      const w = stage.clientWidth || 1;
+      const h = stage.clientHeight || 1;
+      // tile size: as large as fits, given the tightest ring must hold 14 tiles
+      const maxRingCount = 14;
+      const tileW = Math.max(64, Math.min(104, (w * 2 * Math.PI / maxRingCount) * 0.72));
+      const tileH = tileW * 1.32;
+      const gap = tileW * 0.16;
+      const step = tileW + gap;
+
+      // radii: each ring's circumference must fit its tiles at `step`
+      const needed = (count) => (count * step) / (2 * Math.PI);
+      const rxMax = w / 2 - tileW / 2 - 4;
+      const ryMax = h / 2 - tileH / 2 - 4;
+      const scale = Math.min(1, rxMax / needed(14), ryMax / needed(14));
+      const RINGS_R = RING_SIZES.map((count) => needed(count) * scale);
+
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
-        const rx = RX * ringScale[ringNo];
-        const ry = RY * ringScale[ringNo];
+        const rx = RINGS_R[ringNo];
+        const ry = RINGS_R[ringNo] * (h / Math.max(1, w)) * 1.15;
         for (let k = 0; k < count; k++, idx++) {
           const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
-          const x = w / 2 + Math.cos(angle) * rx;
-          const y = h / 2 + Math.sin(angle) * ry;
-          tiles[idx].style.left = x + "px";
-          tiles[idx].style.top = y + "px";
+          const x = w / 2 + Math.cos(angle) * rx - tileW / 2;
+          const y = h / 2 + Math.sin(angle) * ry - tileH / 2;
+          const t = tiles[idx];
+          t.style.left = x + "px";
+          t.style.top = y + "px";
+          t.style.width = tileW + "px";
+          t.style.height = tileH + "px";
+          t.style.transform = "translate(0,0) scale(1)";
         }
       });
       if (reduceMotion) tiles.forEach(function (t2) { t2.classList.add("on"); });
@@ -106,9 +119,8 @@
       const total = stackSection.offsetHeight - window.innerHeight;
       const p = Math.min(1, Math.max(0, -stackSection.getBoundingClientRect().top / Math.max(1, total)));
       const ease = 1 - Math.pow(1 - p, 2);
-      const fill = Math.min(1, p * 2);            // circle completes in the first half
-      orbitEl.style.transform =
-        "scale(" + (0.55 + 0.45 * fill).toFixed(3) + ")";
+      // circle completes in the first half; whole-orbit scale removed to keep
+      // computed positions exact (no overlap during growth)
       const revealed = Math.round(Math.min(1, p * 2) * SKILLS.length);
       tiles.forEach(function (tile, i) { tile.classList.toggle("on", i < revealed); });
       if (orbitCount) orbitCount.textContent = String(revealed);
