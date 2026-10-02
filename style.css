@@ -322,7 +322,7 @@ header#home {
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   overflow: hidden;
-  padding: 16px 0;
+  padding: 11px 0;
   background: var(--bg-soft);
   transition: background 0.9s ease, border-color 0.9s ease;
 }
@@ -345,6 +345,7 @@ header#home {
 /* ---------- sections ---------- */
 main { max-width: 1100px; width: 100%; margin: 0 auto; padding: 0 5vw; }
 section { padding: 90px 0 40px; }
+#about { padding-top: 46px; }
 .mono-label {
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -365,6 +366,7 @@ section { padding: 90px 0 40px; }
   text-align: center;
   margin-bottom: 46px;
 }
+#about .big-title { margin-top: 6px; }
 .stack-sub { text-align: center; }
 
 /* ---------- bento about ---------- */
