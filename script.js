@@ -264,6 +264,10 @@
         tab.classList.add("active");
         const targetSlide = document.getElementById(targetId);
         if (targetSlide) targetSlide.classList.add("active");
+      });
+    });
+  }
+
   /* ---- mobile menu drawer auto-collapse on link click ---- */
   const navToggle = document.getElementById("nav-toggle");
   if (navToggle) {
