@@ -77,22 +77,31 @@
     function layoutOrbit() {
       const w = orbitEl.offsetWidth || 1;
       const h = orbitEl.offsetHeight || 1;
-      // radii grow with guaranteed inter-ring spacing: no tile can overlap another ring
-      const tileW = Math.max(58, Math.min(100, (w * 2 * Math.PI / 16) * 0.66));
-      const step = tileW * 1.16;
-      const r1 = (RING_SIZES[0] * step) / (2 * Math.PI);
-      const r2 = Math.max((RING_SIZES[1] * step) / (2 * Math.PI), r1 + tileW * 1.02);
-      const r3 = Math.max((RING_SIZES[2] * step) / (2 * Math.PI), r2 + tileW * 1.02);
-      const scale = Math.min(1, (w / 2 - tileW / 2 - 6) / r3, (h / 2 - tileW * 0.9 - 6) / r3);
-      const radii = [r1 * scale, r2 * scale, r3 * scale];
+      const minHalf = Math.min(w, h) / 2;
+      // Solve tile width so three rings + guaranteed radial gaps fit the circle:
+      // r1 = 1.846*tw (10 tiles), r3 = r1 + 2 gaps, gap = 1.14*(tw+12).
+      let tw = 92;
+      while (tw > 38) {
+        const gap = 1.14 * (tw + 12);
+        const r3 = 1.846 * tw + 2 * gap;
+        if (r3 + (tw + 12) / 2 + 8 <= minHalf) break;
+        tw -= 2;
+      }
+      const gap = 1.14 * (tw + 12);
+      const r1 = 1.846 * tw;
+      const r2 = Math.max((RING_SIZES[1] * 1.16 * tw) / (2 * Math.PI), r1 + gap);
+      const r3 = Math.max((RING_SIZES[2] * 1.16 * tw) / (2 * Math.PI), r2 + gap);
+      const radii = [r1, r2, r3];
+      const imgH = Math.min(52, tw * 0.55);
+      orbitEl.style.setProperty("--tw", tw + "px");
+      orbitEl.style.setProperty("--ih", imgH + "px");
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
         const r = radii[ringNo];
         for (let k = 0; k < count; k++, idx++) {
           const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
-          tiles[idx].style.left = (w / 2 + Math.cos(angle) * r - tileW / 2) + "px";
-          tiles[idx].style.top = (h / 2 + Math.sin(angle) * r - tileW * 0.82) + "px";
-          tiles[idx].style.width = tileW + "px";
+          tiles[idx].style.left = (w / 2 + Math.cos(angle) * r - tw / 2) + "px";
+          tiles[idx].style.top = (h / 2 + Math.sin(angle) * r - (tw + 12) / 2) + "px";
         }
       });
       if (reduceMotion) tiles.forEach(function (t2) { t2.classList.add("on"); });

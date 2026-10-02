@@ -445,6 +445,7 @@ section { padding: 90px 0 40px; }
   position: absolute;
   left: 0;
   top: 0;
+  width: var(--tw, 74px);
   border-radius: 16px;
   background: linear-gradient(160deg, var(--panel), var(--bg-soft));
   border: 1px solid var(--border);
@@ -460,16 +461,16 @@ section { padding: 90px 0 40px; }
 }
 .orb-skill.on { opacity: 1; scale: 1; }
 .orb-skill:hover { border-color: var(--accent); }
-.orb-skill img { width: 46px; height: 46px; border-radius: 10px; }
+.orb-skill img { width: var(--ih, 46px); height: var(--ih, 46px); border-radius: 10px; }
 .orb-skill .abbr {
   font-family: var(--mono);
-  font-size: 0.72rem;
+  font-size: clamp(0.56rem, 1.1vw, 0.72rem);
   font-weight: 600;
   color: var(--accent);
 }
 .orb-skill .oname {
   font-family: var(--mono);
-  font-size: 0.6rem;
+  font-size: clamp(0.52rem, 0.95vw, 0.6rem);
   color: var(--bone-dim);
   text-align: center;
   line-height: 1.25;
