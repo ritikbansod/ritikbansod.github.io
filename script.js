@@ -37,9 +37,9 @@
   const TECH_TEXT = ["Helm","Strimzi","SonarQube","Gerrit","Swagger","REST APIs",
     "AWS Kiro","Claude","MCP","Spring AI","LangChain4j"].map(function (n) { return { icon: null, name: n }; });
 
-  const RING_INNER = TECH_LOGOS.slice(0, 8).concat(TECH_TEXT.slice(0, 4));
-  const RING_MIDDLE = TECH_LOGOS.slice(8, 20).concat(TECH_TEXT.slice(4, 7));
-  const RING_OUTER = TECH_LOGOS.slice(20, 23).concat(TECH_TEXT.slice(7));
+  const RING_INNER = TECH_LOGOS.slice(0, 8).concat(TECH_TEXT.slice(0, 2));
+  const RING_MIDDLE = TECH_LOGOS.slice(8, 18).concat(TECH_TEXT.slice(2, 4));
+  const RING_OUTER = TECH_LOGOS.slice(18, 23).concat(TECH_TEXT.slice(4));
   const SKILLS = RING_INNER.concat(RING_MIDDLE, RING_OUTER);
   const RING_SIZES = [RING_INNER.length, RING_MIDDLE.length, RING_OUTER.length];
 
@@ -77,14 +77,17 @@
     function layoutOrbit() {
       const w = orbitEl.offsetWidth || 1;
       const h = orbitEl.offsetHeight || 1;
-      // tile size from the tightest ring's capacity: overlap is impossible
-      const tileW = Math.max(60, Math.min(100, (w * 2 * Math.PI / 14) * 0.7));
-      const step = tileW * 1.18;
-      const needed = function (count) { return (count * step) / (2 * Math.PI); };
-      const scale = Math.min(1, (w / 2 - tileW / 2 - 6) / needed(14), (h / 2 - tileW * 0.85 - 6) / needed(14));
+      // radii grow with guaranteed inter-ring spacing: no tile can overlap another ring
+      const tileW = Math.max(58, Math.min(100, (w * 2 * Math.PI / 16) * 0.66));
+      const step = tileW * 1.16;
+      const r1 = (RING_SIZES[0] * step) / (2 * Math.PI);
+      const r2 = Math.max((RING_SIZES[1] * step) / (2 * Math.PI), r1 + tileW * 1.02);
+      const r3 = Math.max((RING_SIZES[2] * step) / (2 * Math.PI), r2 + tileW * 1.02);
+      const scale = Math.min(1, (w / 2 - tileW / 2 - 6) / r3, (h / 2 - tileW * 0.9 - 6) / r3);
+      const radii = [r1 * scale, r2 * scale, r3 * scale];
       let idx = 0;
       RING_SIZES.forEach(function (count, ringNo) {
-        const r = needed(count) * scale;
+        const r = radii[ringNo];
         for (let k = 0; k < count; k++, idx++) {
           const angle = (k / count) * Math.PI * 2 - Math.PI / 2 + ringNo * 0.26;
           tiles[idx].style.left = (w / 2 + Math.cos(angle) * r - tileW / 2) + "px";
